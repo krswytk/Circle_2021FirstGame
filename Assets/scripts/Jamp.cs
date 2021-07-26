@@ -7,52 +7,50 @@ public class Jamp : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Vector3 force;
-    Ray ray;
     public bool isGround;
-    private RaycastHit hit;
-
+    public bool slidingflg;
+    private const float ACTION_TIME = 1f;
+    private float _actionTime;
     // Start is called before the first frame update
     void Start()
     {
         isGround = false;
+        this.gameObject.layer = 7;
         rb = this.GetComponent<Rigidbody2D>();
         force = new Vector3(1.0f, 0.0f, 0.0f);
+        slidingflg = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        force = new Vector3(force.x, 0f, 0f);
-        int layerMask=1<<6;
-        layerMask= ~layerMask;
+        this.gameObject.transform.Translate(0.01f, 0f, 0f);
+        force = new Vector3(0.0f, 0.0f, 0.0f);
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            force.y += 250.0f;
+            force.y += 400.0f;
             isGround = false;
         }
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.S) && slidingflg)
         {
-            Physics.Raycast(ray, out hit, Mathf.Infinity,layerMask);
+            gameObject.layer = 8;
+            slidingflg = false;
         }
-        /*if (Input.GetKey(KeyCode.Space))
-        {
-            this.gameObject.transform.Translate(0f, 0.1f, 0f);
-        }
-
-        
-        if (Input.GetKey(KeyCode.D))
-        {
-            this.gameObject.transform.Translate(0.1f, 0f, 0f);
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            this.gameObject.transform.Translate(-0.1f, 0f, 0f);
-        }*/
-        
-
         rb.AddForce(force);
-     
-        
+        Debug.Log("G‚ê‚Ä‚¢‚Ü‚¹‚ñ");
     }
+    void OnTriggerStay2D(Collider2D collision)//‰½‚©‚ÉG‚ê‚½‚Æ‚«
+    {
+        Debug.Log("G‚ê‚Ä‚¢‚Ü‚·");
+        if (collision.gameObject.tag =="SlidingS")//G‚ê‚½ƒIƒuƒWƒFƒNƒg‚Ì–¼‘O‚ªgole‚È‚ç
+        {
+            slidingflg = true;
+        }
+        if (collision.gameObject.tag=="SlidingE")
+        {
+            this.gameObject.layer = 7;
+        }
 
+
+    }
 }

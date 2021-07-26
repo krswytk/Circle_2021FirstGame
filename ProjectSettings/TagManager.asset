@@ -5,16 +5,18 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - SlidingS
+  - SlidingE
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - player
+  - 
   - Water
   - UI
   - wall
-  - 
-  - 
+  - Run_player
+  - Sliding_player
   - 
   - 
   - 
