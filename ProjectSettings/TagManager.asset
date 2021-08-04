@@ -7,6 +7,8 @@ TagManager:
   - Ground
   - SlidingS
   - SlidingE
+  - hawk
+  - wall
   layers:
   - Default
   - TransparentFX
