@@ -9,14 +9,9 @@ public class ButtonScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        stage_Serect = GameObject.Find("stage_Serect");
+        stage_Serect = GameObject.Find("stage_Serect");//stageSelect‚ÉˆÚ“®
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void change_stage_Serect()
     {
         Invoke("stage_Serect", 1.5f);

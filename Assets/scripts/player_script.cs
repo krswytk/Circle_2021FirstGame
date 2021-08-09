@@ -13,9 +13,12 @@ public class player_script : MonoBehaviour
     public GameObject canvas;
     private Transform TextScore;//Scoreテキスト
     private Score score;
+    Animator animator;
     // Start is called before the first frame update
     void Start()
     {
+        this.animator = GetComponent<Animator>();
+        animator.SetTrigger("start");
         canvas = GameObject.Find("Canvas");
         TextScore = canvas.transform.Find("Score");//scoreを探す
         rb = this.GetComponent<Rigidbody2D>();
@@ -28,14 +31,18 @@ public class player_script : MonoBehaviour
         TextGameover.SetActive(false);//textgameoverを非表示にする
         
     }
-
-    // Update is called once per frame
     private void Update()
     {
-        this.gameObject.transform.Translate(0.02f, 0f, 0f);
+        
+    }
+    // Update is called once per frame
+    private void FixedUpdate()
+    {
+        this.gameObject.transform.Translate(0.03f, 0f, 0f);
         force = new Vector3(0.0f, 0.0f, 0.0f);
         if (Input.GetKeyDown(KeyCode.Space) && isGround)
         {
+            Debug.Log("j");
             jump();
         }
         if (Input.GetKey(KeyCode.S) && slidingflg)
@@ -46,16 +53,19 @@ public class player_script : MonoBehaviour
     }
     void jump()
     {
-        force.y += 400.0f;
+        animator.SetTrigger("Jump");
+        force.y += 1000.0f;
         isGround = false;
     }
     void sliding()
     {
+        animator.SetTrigger("sliding");
         gameObject.layer = 8;//layerをスライディングに変更する
         slidingflg = false;//スライディング入力を不可能にする
     }
     void Gameover()
     {
+        animator.SetTrigger("GameOverAnimation");
         TextGameover.SetActive(true);//GameOverを表示する
         score.isclear=true;
     }
@@ -81,7 +91,6 @@ public class player_script : MonoBehaviour
     {
         if (collision.gameObject.tag == "wall")
         {
-            Debug.Log("Hit");
             Gameover();
         }
         if (collision.gameObject.tag == "Ground")
