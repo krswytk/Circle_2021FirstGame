@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
 public class mousedrag: MonoBehaviour
 {
     private Vector3 position;//マウス位置座標を格納する変数
@@ -28,10 +28,26 @@ public class mousedrag: MonoBehaviour
 
         //Cubeの現在位置を、スクリーン座標からワールド座標に変換して、pointWorldに格納
         Vector3 pointWorld = Camera.main.ScreenToWorldPoint(pointScreen);
-        pointWorld.z = transform.position.z;
+  
 
-        //Cubeの位置を、pointWorldにする
-        transform.position = pointWorld;
+     
     }
 
+    private void Update()
+    {
+        if (Input.GetMouseDrag)
+        {
+
+
+            if (checked==true){
+                Vector3V1 =      ;
+                    checked== false;
+            }
+            transform.Rotate(new Vector3(0, 2, 0), Space.Self);
+
+        }
+
+        
+    }
 }
+    */
