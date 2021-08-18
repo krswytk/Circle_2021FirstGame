@@ -5,12 +5,12 @@ using UnityEngine;
 public class frog_script : MonoBehaviour
 {
     private Score score;
-    private GameObject TextScore;//Scoreテキスト
+    private GameObject TextScore_Obj;//Scoreテキスト
     // Start is called before the first frame update
     void Start()
     {
-        TextScore = GameObject.Find("Score");
-        score = TextScore.GetComponent<Score>();
+        TextScore_Obj = GameObject.Find("Score");
+        score = TextScore_Obj.GetComponent<Score>();
     }
 
     // Update is called once per frame
@@ -18,7 +18,7 @@ public class frog_script : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            score.PlayerScore += 1000;
+            Score.plusscore(1000);
             this.gameObject.SetActive(false);
         }
 

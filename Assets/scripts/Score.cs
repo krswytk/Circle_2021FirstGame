@@ -5,17 +5,16 @@ using UnityEngine.UI;
 
 public class Score : MonoBehaviour
 {
-    public int PlayerScore;
-    private int ClearScore;
-    public GameObject Text;
-    public Text TextScore;
-    public bool isclear;
+    public static int PlayerScore_int;
+    public GameObject Text_Obj;
+    public Text TextScore_Text;
+    public bool isclear_bool;
     // Start is called before the first frame update
     void Start()
     {
-        PlayerScore = 0;
-        Text.SetActive(true);
-        isclear = false;
+        PlayerScore_int = 0;
+        Text_Obj.SetActive(true);
+        isclear_bool = false;
     }
 
     // Update is called once per frame
@@ -23,18 +22,25 @@ public class Score : MonoBehaviour
     {
         score();
     }
+    public static int getscore()
+    {
+        return PlayerScore_int;
+    }
+    public static void plusscore(int plus)
+    {
+        PlayerScore_int += plus;
+    }
     void score()
     {
         
-        if (isclear)
+        if (isclear_bool)
         {
-            ClearScore = PlayerScore;
-            TextScore.text = "Score" + ClearScore;
+            TextScore_Text.text = "Score " + PlayerScore_int;
         }
         else
         {
-            PlayerScore++;
-            TextScore.text = "Score" + PlayerScore;
+            PlayerScore_int++;
+            TextScore_Text.text = "Score " + PlayerScore_int;
         }
     }
 }

@@ -9,6 +9,9 @@ TagManager:
   - SlidingE
   - hawk
   - wall
+  - Fall
+  - hall
+  - Goal
   layers:
   - Default
   - TransparentFX
