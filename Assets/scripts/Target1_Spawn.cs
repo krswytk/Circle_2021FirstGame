@@ -8,8 +8,8 @@ public class Target1_Spawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Invoke("Target1R", 0.375f);
-        Invoke("Target1R", 1.125f);
+        Invoke("Target1R", 2.375f);
+        Invoke("Target1R", 3.125f);
     }
 
     // Update is called once per frame
