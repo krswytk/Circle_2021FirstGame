@@ -7,12 +7,16 @@ public class Jump : MonoBehaviour
     private Rigidbody rb;
     private Vector3 force;
 
+    private int Jp;
+
 
     // Start is called before the first frame update
     void Start()
     {
         rb = this.GetComponent<Rigidbody>();
         force = new Vector3(0.0f, 0.0f, 0.0f);
+
+        Jp = 0;
     }
 
     // Update is called once per frame
@@ -21,9 +25,14 @@ public class Jump : MonoBehaviour
 
         force = new Vector3(0f, 0f, 0f);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Jp < 2)
         {
-            force.y += 300.0f;
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                force.y += 300.0f;
+                Jp++;
+            }
+
         }
 
         if (Input.GetKey(KeyCode.A))
@@ -56,6 +65,12 @@ public class Jump : MonoBehaviour
         {
             Destroy(GetComponent<Rigidbody>());//Rigidbodyを消す
             GetComponent<Jump>().enabled = false;//クリアしたらJumpを停止
+        }
+
+
+        if (collision.gameObject.tag == "Ground")//触れたオブジェクトの名前がgoleなら
+        {
+            Jp = 0;
         }
     }
 
