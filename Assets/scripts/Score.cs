@@ -35,12 +35,12 @@ public class Score : MonoBehaviour
         
         if (isclear_bool)
         {
-            TextScore_Text.text = "Score " + PlayerScore_int;
+            TextScore_Text.text =PlayerScore_int.ToString();
         }
         else
         {
             PlayerScore_int++;
-            TextScore_Text.text = "Score " + PlayerScore_int;
+            TextScore_Text.text = PlayerScore_int.ToString();
         }
     }
 }

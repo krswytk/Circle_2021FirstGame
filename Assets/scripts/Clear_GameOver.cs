@@ -14,8 +14,8 @@ public class Clear_GameOver : MonoBehaviour
     public GameObject Goal_Obj;//Goaltextobject
     public GameObject GoScore_Obj;//Goscoreobject
     private bool isgole_bool;
-    private float speed = 1.0f;
-    private float time;
+    private static float speed = 1.0f;
+    private static float time;
     private bool isgameover_bool;
     AudioSource audioSource;
     public AudioClip Gameover_sound;
@@ -55,7 +55,7 @@ public class Clear_GameOver : MonoBehaviour
             FadeManager.Instance.LoadScene("result", 2.0f);
         }
     }
-    public Color GetAlphaColor(Color color)
+    public static Color GetAlphaColor(Color color)
     {
         /*参考サイト
          https://goodlucknetlife.com/unity-2daction-blinker/
