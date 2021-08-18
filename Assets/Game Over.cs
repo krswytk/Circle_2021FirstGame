@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Gameover : MonoBehaviour
 {
-    public GameObject TextGame Over;
+    public GameObject TextGameover;
     public GameObject Player;
     private bool rs;
 
