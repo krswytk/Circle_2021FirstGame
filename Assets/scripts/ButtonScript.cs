@@ -2,14 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
 public class ButtonScript : MonoBehaviour
 {
     public GameObject botton_Obj;
     public GameObject Sound_Obj;
     public AudioClip Game_In_sound;
     AudioSource Bottonclick_sound;
+    bool stage_serect_push_bool;
+    bool RunGame_push_bool;
     // Start is called before the first frame update
+    void Start()
+    {
+        stage_serect_push_bool = true;
+        RunGame_push_bool=true;
+        SceneManager.sceneUnloaded += SceneUnloaded;
+    }
     private void OnMouseOver()
     {
         //SphereÇÃêFÇê‘êFÇ…ïœâªÇ≥ÇπÇ‹Ç∑ÅB
@@ -24,18 +31,30 @@ public class ButtonScript : MonoBehaviour
     }
     public void change_stage_Serect()
     {
-        Bottonclick_sound = Sound_Obj.GetComponent<AudioSource>();
-        Bottonclick_sound.Stop();
-        Bottonclick_sound.PlayOneShot(Game_In_sound);
-        FadeManager.Instance.LoadScene("stage_Select", 2.0f);
-        
+        if (stage_serect_push_bool)
+        {
+            Bottonclick_sound = Sound_Obj.GetComponent<AudioSource>();
+            Bottonclick_sound.Stop();
+            Bottonclick_sound.PlayOneShot(Game_In_sound);
+            FadeManager.Instance.LoadScene("stage_Select", 2.0f);
+            stage_serect_push_bool = false;
+        }
     }
     public void change_RunGame()
     {
-
-        Bottonclick_sound = Sound_Obj.GetComponent<AudioSource>();
-        Bottonclick_sound.Stop();
-        Bottonclick_sound.PlayOneShot(Game_In_sound);
-        FadeManager.Instance.LoadScene("RunGame", 2.0f);
+        if (RunGame_push_bool)
+        {
+            Bottonclick_sound = Sound_Obj.GetComponent<AudioSource>();
+            Bottonclick_sound.Stop();
+            Bottonclick_sound.PlayOneShot(Game_In_sound);
+            FadeManager.Instance.LoadScene("RunGame", 2.0f);
+            RunGame_push_bool = false;
+        }
+    }
+    void SceneUnloaded(Scene buttonScene)
+    {
+        Debug.Log("botton");
+        stage_serect_push_bool = true;
+        RunGame_push_bool = true;
     }
 }

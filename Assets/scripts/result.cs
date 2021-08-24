@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class result : MonoBehaviour
 {
     private int point;
@@ -17,6 +17,7 @@ public class result : MonoBehaviour
     Text NewRecord;
     Score score;
     int rank;
+    private bool isPushEnter_bool;
     // Use this for initialization
     void Start()
     {
@@ -25,7 +26,8 @@ public class result : MonoBehaviour
         rank = 6;
         GetRanking();
         SetRanking(point);
-
+        isPushEnter_bool=true;
+        SceneManager.sceneUnloaded += SceneUnloaded;
         for (int i = 0; i < rankingText.Length; i++)
         {
             rankingText[i].text = rankingValue[i].ToString();
@@ -33,20 +35,23 @@ public class result : MonoBehaviour
     }
     private void Update()
     {
-        Debug.Log(rank);
+        if(Input.GetKey(KeyCode.Return) && isPushEnter_bool)
+        {
+            isPushEnter_bool = false;
+            FadeManager.Instance.LoadScene("stage_select", 2.0f);
+        }
+
         if (rank < 6)
         {
             rankingText[rank].color = Clear_GameOver.GetAlphaColor(rankingText[rank].color);
         }
+
         if (rank == 0)
         {
             NewRecord.color = Clear_GameOver.GetAlphaColor(NewRecord.color);
             NewRecord_Obj.SetActive(true);
         }
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            FadeManager.Instance.LoadScene("stage_select", 2.0f);
-        }
+        
     }
     /// <summary>
     /// ƒ‰ƒ“ƒLƒ“ƒOŒÄ‚Ño‚µ
@@ -82,6 +87,11 @@ public class result : MonoBehaviour
         {
             PlayerPrefs.SetInt(ranking[i], rankingValue[i]);
         }
+    }
+    void SceneUnloaded(Scene resultScene)
+    {
+        Debug.Log("result");
+        isPushEnter_bool = true;
     }
 }
 

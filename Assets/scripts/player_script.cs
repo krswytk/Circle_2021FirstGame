@@ -8,7 +8,7 @@ public class player_script : MonoBehaviour
     private Rigidbody2D rb;
     private Vector3 force_Vec;
     private bool isGround_bool;//地面についてるかどうかの判定
-    private bool slidingflg_bool;//スライディング状態かどうかの判定
+    //private bool slidingflg_bool;//スライディング状態かどうかの判定
     Animator animator;
     
     public static float speed_f;
@@ -21,7 +21,7 @@ public class player_script : MonoBehaviour
         isGround_bool = true;
         this.gameObject.layer = 7;//runlayerに設定する
         force_Vec = new Vector3(1.0f, 0.0f, 0.0f);//forceの初期設定
-        slidingflg_bool = false;//スライディング実行かどうか
+        //slidingflg_bool = true;//スライディング実行かどうか
         speed_f = 0.05f;
     }
     // Update is called once per frame
@@ -33,7 +33,7 @@ public class player_script : MonoBehaviour
         {
             jump();
         }
-        if (Input.GetKeyDown(KeyCode.S) && slidingflg_bool)
+        if (Input.GetKeyDown(KeyCode.S))
         {
             sliding();
         }
@@ -41,8 +41,7 @@ public class player_script : MonoBehaviour
         
     }
     private void jump()
-    {
-        
+    {  
         animator.SetTrigger("Jump");
         force_Vec.y += 500.0f;
         rb.AddForce(force_Vec);
@@ -64,19 +63,15 @@ public class player_script : MonoBehaviour
     private void sliding()
     {
         animator.SetTrigger("sliding");
+        //slidingflg_bool = false;
         gameObject.layer = 8;//layerをスライディングに変更する
-        slidingflg_bool = false;//スライディング入力を不可能にする
+    }
+    void slidingend()
+    {
+        this.gameObject.layer = 7;//layerをrunに変更する
     }
     private void OnTriggerStay2D(Collider2D collision)//何かに触れたとき
     {
-        if (collision.gameObject.tag =="SlidingS")//触れたオブジェクトの名前がslidingSなら
-        {
-            slidingflg_bool = true;//スライディング入力を可能にする
-        }
-        if (collision.gameObject.tag=="SlidingE")
-        {
-            this.gameObject.layer = 7;//layerをrunに変更する
-        }
         
         if (collision.gameObject.tag == "hall")
         {

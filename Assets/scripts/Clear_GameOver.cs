@@ -17,6 +17,7 @@ public class Clear_GameOver : MonoBehaviour
     private static float speed = 1.0f;
     private static float time;
     private bool isgameover_bool;
+    private bool isPushEnter_bool;
     AudioSource audioSource;
     public AudioClip Gameover_sound;
     public AudioClip Clear_sound;
@@ -32,6 +33,8 @@ public class Clear_GameOver : MonoBehaviour
         score = TextScore_Tran.GetComponent<Score>();
         Goal_Obj.SetActive(false);//goaltext‚ð”ñ•\Ž¦‚É‚·‚é
         isgole_bool = false;
+        isPushEnter_bool = true;
+        SceneManager.sceneUnloaded += SceneUnloaded;
         p1 = GetComponent<player_script>();
     }
 
@@ -42,8 +45,9 @@ public class Clear_GameOver : MonoBehaviour
         {
             GoScore_Text.color = GetAlphaColor(GoScore_Text.color);
         }
-        if (Input.GetKeyDown(KeyCode.Return) && isgole_bool)
+        if (Input.GetKeyDown(KeyCode.Return) && isgole_bool&&isPushEnter_bool)
         {
+            isPushEnter_bool = false;
             FadeManager.Instance.LoadScene("result", 2.0f);
         }
         if (isgameover_bool)
@@ -52,6 +56,7 @@ public class Clear_GameOver : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Return) && isgameover_bool)
         {
+            isPushEnter_bool = false;
             FadeManager.Instance.LoadScene("result", 2.0f);
         }
     }
@@ -114,5 +119,10 @@ public class Clear_GameOver : MonoBehaviour
             Gameover();
         }
         
+    }
+    void SceneUnloaded(Scene clear_gameoverScene)
+    {
+        Debug.Log("clear");
+        isPushEnter_bool = true;
     }
 }
