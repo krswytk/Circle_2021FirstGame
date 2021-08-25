@@ -22,6 +22,7 @@ public class RockController : MonoBehaviour
 		{
 			GameObject.Find("Canvas").GetComponent<UIController>().GameOver();
 			Destroy(gameObject);
+			Time.timeScale = 0f;
 		}
 	}
 }

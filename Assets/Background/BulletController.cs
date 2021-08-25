@@ -7,7 +7,7 @@ public class BulletController : MonoBehaviour
 	{
 		transform.Translate(0, 0.02f, 0);
 
-		if (transform.position.y > 6)
+		if (transform.position.y > 18)
 		{
 			Destroy(gameObject);
 		}

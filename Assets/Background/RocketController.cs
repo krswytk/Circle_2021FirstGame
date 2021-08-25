@@ -28,11 +28,16 @@ public class RocketController : MonoBehaviour
         {
 			transform.Translate(0, -0.01f, 0);
         }
+
+		if(transform.position.y > 20)
+        {
+			GameObject.Find("Canvas").GetComponent<UIController>().Clear();
+			Time.timeScale = 0f; 
+		}
 	}
 	void OnTriggerEnter2D(Collider2D coll)
 	{
-		Destroy(gameObject);
+		this.gameObject.SetActive(false);
 		GameObject.Find("Canvas").GetComponent<UIController>().GameOver();
-
 	}
 }

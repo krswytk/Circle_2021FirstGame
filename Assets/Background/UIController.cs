@@ -8,11 +8,17 @@ public class UIController : MonoBehaviour
 	int score = 0;
 	GameObject scoreText;
 	GameObject gameOverText;
+	GameObject clearText;
 
 	public void GameOver()
     {
 		this.gameOverText.GetComponent<Text>().text = "GameOver";
 	}
+	 
+	public void Clear()
+    {
+		this.clearText.GetComponent<Text>().text = "Clear";
+    }
 
 	public void AddScore()
 	{
@@ -23,6 +29,7 @@ public class UIController : MonoBehaviour
 	{
 		this.scoreText = GameObject.Find("Score");
 		this.gameOverText = GameObject.Find("GameOver");
+		this.clearText = GameObject.Find("Clear");
 	}
 
 	void Update()

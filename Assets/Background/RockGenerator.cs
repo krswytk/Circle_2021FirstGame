@@ -13,6 +13,6 @@ public class RockGenerator : MonoBehaviour
 
 	void GenRock()
 	{
-		Instantiate(rockPrefab, new Vector3(-2.5f + 5 * Random.value, 14, 0), Quaternion.identity);
+		Instantiate(rockPrefab, new Vector3(-2.5f + 5 * Random.value, 25, 0), Quaternion.identity);
 	}
 }
