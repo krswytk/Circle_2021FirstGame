@@ -10,8 +10,9 @@ public class Play_GunmanBGM : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Application.targetFrameRate = 60;
         audioSource = GetComponent<AudioSource>();
-        Invoke("PlayBGM", 2.0f);
+        Invoke("PlayBGM", 1.656f);
     }
 
     // Update is called once per frame
