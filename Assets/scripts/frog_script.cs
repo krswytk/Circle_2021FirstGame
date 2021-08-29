@@ -6,6 +6,7 @@ public class frog_script : MonoBehaviour
 {
     private Score score;
     private GameObject TextScore_Obj;//Scoreテキスト
+    
     // Start is called before the first frame update
     void Start()
     {

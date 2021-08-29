@@ -12,6 +12,7 @@ TagManager:
   - Fall
   - hall
   - Goal
+  - cherry
   layers:
   - Default
   - TransparentFX

@@ -27,11 +27,11 @@ public class Clear_GameOver : MonoBehaviour
     void Start()
     {
         TextGameover_Obj.SetActive(false);//textgameover‚ð”ñ•\Ž¦‚É‚·‚é
-        canvas_Obj = GameObject.Find("Canvas");
         TextScore_Tran = canvas_Obj.transform.Find("Score");//score‚ð’T‚·
         TextScore_Tran.gameObject.SetActive(true);//textscore‚ð•\Ž¦‚·‚é
-        score = TextScore_Tran.GetComponent<Score>();
+        canvas_Obj = GameObject.Find("Canvas");
         Goal_Obj.SetActive(false);//goaltext‚ð”ñ•\Ž¦‚É‚·‚é
+        score = TextScore_Tran.GetComponent<Score>();
         isgole_bool = false;
         isPushEnter_bool = true;
         SceneManager.sceneUnloaded += SceneUnloaded;

@@ -10,11 +10,13 @@ public class ButtonScript : MonoBehaviour
     AudioSource Bottonclick_sound;
     bool stage_serect_push_bool;
     bool RunGame_push_bool;
+    bool RunGame2_push_bool;
     // Start is called before the first frame update
     void Start()
     {
         stage_serect_push_bool = true;
         RunGame_push_bool=true;
+        RunGame2_push_bool = true;
         SceneManager.sceneUnloaded += SceneUnloaded;
     }
     private void OnMouseOver()
@@ -51,10 +53,22 @@ public class ButtonScript : MonoBehaviour
             RunGame_push_bool = false;
         }
     }
+    public void change_RunGame2()
+    {
+        if (RunGame2_push_bool)
+        {
+            Bottonclick_sound = Sound_Obj.GetComponent<AudioSource>();
+            Bottonclick_sound.Stop();
+            Bottonclick_sound.PlayOneShot(Game_In_sound);
+            FadeManager.Instance.LoadScene("RunGame2", 2.0f);
+            RunGame2_push_bool = false;
+        }
+    }
     void SceneUnloaded(Scene buttonScene)
     {
         Debug.Log("botton");
         stage_serect_push_bool = true;
         RunGame_push_bool = true;
     }
+
 }

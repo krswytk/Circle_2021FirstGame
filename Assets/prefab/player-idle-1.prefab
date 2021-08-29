@@ -146,6 +146,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5b15a6c06e22274aa7a14323a52f0e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jump_sound: {fileID: 8300000, guid: 5cbc61d58b296264bab009c39917db21, type: 3}
+  sliding_sound: {fileID: 8300000, guid: a15e7cad7ea541242b3b8fd6bcaadd36, type: 3}
+  cherry_sound: {fileID: 8300000, guid: db438bf4f8b626845b94959a8bde2bd3, type: 3}
 --- !u!95 &4037232277780912265
 Animator:
   serializedVersion: 3
