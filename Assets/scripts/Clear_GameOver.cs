@@ -54,7 +54,7 @@ public class Clear_GameOver : MonoBehaviour
         {
             Gameover_Text.color = GetAlphaColor(Gameover_Text.color);
         }
-        if (Input.GetKeyDown(KeyCode.Return) && isgameover_bool)
+        if (Input.GetKeyDown(KeyCode.Return) && isgameover_bool&&isPushEnter_bool)
         {
             isPushEnter_bool = false;
             FadeManager.Instance.LoadScene("result", 2.0f);
