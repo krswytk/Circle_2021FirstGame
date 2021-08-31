@@ -26,7 +26,10 @@ public class Target_hit : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
+
                 Destroy(gameObject);
+                Stage1score.S1score++;
+
             }
         }
     }

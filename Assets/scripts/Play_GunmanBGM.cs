@@ -12,7 +12,7 @@ public class Play_GunmanBGM : MonoBehaviour
     {
         Application.targetFrameRate = 60;
         audioSource = GetComponent<AudioSource>();
-        Invoke("PlayBGM", 1.656f);
+        Invoke("PlayBGM", 3.656f);
     }
 
     // Update is called once per frame

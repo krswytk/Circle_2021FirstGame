@@ -12,7 +12,14 @@ public class ThreeHitSE_Play : MonoBehaviour
     {
         Application.targetFrameRate = 60;
         audioSource = GetComponent<AudioSource>();
-        Invoke("PlaySE", 6.210f);
+        Invoke("PlaySE", 8.210f);
+        Invoke("PlaySE", 21.458f);
+        Invoke("PlaySE", 34.706f);
+        Invoke("PlaySE", 38.018f);
+        Invoke("PlaySE", 41.330f);
+        Invoke("PlaySE", 47.954f);
+        Invoke("PlaySE", 54.578f);
+        Invoke("PlaySE", 67.826f);
     }
 
     // Update is called once per frame
