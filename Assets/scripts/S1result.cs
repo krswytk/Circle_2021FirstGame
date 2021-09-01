@@ -1,3 +1,5 @@
+//ステージ1のリザルト画面プログラムの中枢
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,10 +7,10 @@ using UnityEngine;
 public class S1result : MonoBehaviour
 {
     int result;
-    int HRs;
-    public static int HR;
-    [SerializeField] GameObject spaceanim;
-    public AudioClip E;
+    int HRs; //ハイスコア格納関数
+    public static int HR; //ハイランク判定関数
+    [SerializeField] GameObject spaceanim; //アニメーションする予定のオブジェクト指定
+    public AudioClip E; //11～13行目、流す音楽の選択枠
     public AudioClip G;
     public AudioClip R;
     AudioSource audioSource;
@@ -16,12 +18,13 @@ public class S1result : MonoBehaviour
     void Start()
     {
         Application.targetFrameRate = 60;
-        result = Stage1score.S1score;
-        if (HRs < Stage1score.S1score)
+        result = Stage1score.S1score; //ステージ1のスコアを別のスクリプトから参照
+        if (HRs < Stage1score.S1score) //もしスコアが最後に取った時より高かったらハイスコアとして入れ替える
         {
             HRs = Stage1score.S1score;
 
         }
+        //ここでスコアによってランク分けする(80%以上で良、50%以上で可、それ未満は不)
         if (HRs >= 51)
         {
             HR = 2;
@@ -35,6 +38,7 @@ public class S1result : MonoBehaviour
             HR = 0;
         }
         audioSource = GetComponent<AudioSource>();
+        //リザルトアニメーション再生
         Invoke("Result", 1f);
         Invoke("Result2", 3f);
         Invoke("ResultM", 4.5f);
@@ -43,7 +47,7 @@ public class S1result : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void Update() //スペースキーを押したらステージセレクト画面まで戻る
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -52,7 +56,7 @@ public class S1result : MonoBehaviour
         
     }
 
-    void Result()
+    void Result() //点数による評価のコメント決定部分
     {
         if (result >= 51)
         {
@@ -72,18 +76,18 @@ public class S1result : MonoBehaviour
         }
     }
 
-    void Result2()
+    void Result2() //点数による評価表示部分
     {
         if (result >= 51)
         {
             GameObject S1Result2 = (GameObject)Resources.Load("ResultE");
-            GameObject instance = (GameObject)Instantiate(S1Result2, new Vector3(0f, -1.5f, 0f), Quaternion.identity);
+            GameObject instance = (GameObject)Instantiate(S1Result2, new Vector3(0f, -1.2f, 0f), Quaternion.identity);
 
         }
         else if (result >= 32)
         {
             GameObject S1Result2 = (GameObject)Resources.Load("ResultG");
-            GameObject instance = (GameObject)Instantiate(S1Result2, new Vector3(0f, -1.5f, 0f), Quaternion.identity);
+            GameObject instance = (GameObject)Instantiate(S1Result2, new Vector3(0f, -1.2f, 0f), Quaternion.identity);
         }
         else
         {
@@ -92,7 +96,7 @@ public class S1result : MonoBehaviour
         }
     }
 
-    void ResultM()
+    void ResultM() //リザルト音楽決定部分
     {
         if (result >= 51)
         {
@@ -108,7 +112,7 @@ public class S1result : MonoBehaviour
         }
     }
 
-    IEnumerator Spaceanim()
+    IEnumerator Spaceanim() //コルーチン関数を使ったオブジェクトの点滅処理
     {
         yield return new WaitForSeconds(6.5f);
         yield return null;

@@ -1,10 +1,12 @@
+//ステージ1の三連続マト合図のプログラム
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ThreeHitSE_Play : MonoBehaviour
 {
-    public AudioClip ThreeHitSE;
+    public AudioClip ThreeHitSE; //流すSE選択枠
     AudioSource audioSource;
 
     // Start is called before the first frame update
